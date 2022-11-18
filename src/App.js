@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+// funcion app - citando las propiedades del Componente App 
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.js</code> 
         </p>
         <a
           className="App-link"
@@ -15,7 +16,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React in platzi
+          {/* // tomamos lo que nos llegue del componente App y usamos su propiedad saludo */}
+          {props.children} 
+          
         </a>
       </header>
     </div>
