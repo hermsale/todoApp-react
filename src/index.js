@@ -9,7 +9,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // componente 
 root.render(
     // Si declaramos el componente con apertura y cierre de App, podemos hacer uso de la propiedad children 
-    <App>
-        <h1>Saludos</h1>
-    </App>
+    <App />
+    
  );
