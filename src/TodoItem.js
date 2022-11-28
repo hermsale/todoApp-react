@@ -1,13 +1,13 @@
 import React from   'react';
+import './TodoItem.css'
 
 function TodoItem(props){
-    console.log(props);
+    // console.log(props);
     return (
-        <li>
-            <span>C</span>
+        <li className='TodoItem'>
+            <span className={`Icon Icon__check ${props.completed && 'Icon__check-active'}`}>√</span>
             <p>{props.number}</p>
-            <p>{props.text}</p>        
-            <p>{props.completed}</p>
+            <p className='TodoItem__p'>{props.text}</p>        
             <p>{props.genero}</p>
             <span>X</span>
         </li>

@@ -3,15 +3,15 @@ import { TodoCounter } from './TodoCounter';
 import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
-import { CreateTodoButtom } from './CreateTodoButtom';
+import { CreateTodoButton } from './CreateTodoButton';
 
 // import './App.css';
 
 // creamos una lista de array con objetos y propiedades - tareas pendientes
 const todos = [
-  {index:1, text:'Cortar Cebollar', completed:true, genero:'masculino'},
-  {index:2, text:'Tomar Curso React', completed:false, genero:'masculino'},
-  {index:3, text:'Lavar auto', completed:false, genero:'femenino'}
+  {index:1, text:'Cortar Cebollar', completed:true},
+  {index:2, text:'Tomar Curso React', completed:false},
+  {index:3, text:'Lavar auto', completed:false}
 ]
 
 // funcion app - citando las propiedades del Componente App 
@@ -24,11 +24,11 @@ function App() {
        {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
       <TodoList>
          {todos.map(todo => (
-           <TodoItem key={todo.index} number={todo.index} text={todo.text} genero={todo.genero} completed={todo.completed} />
+           <TodoItem key={todo.index} number={todo.index} text={todo.text} completed={todo.completed} />
           ))} 
       </TodoList>
 
-      <CreateTodoButtom />
+      <CreateTodoButton />
 
     </React.Fragment>
     );
