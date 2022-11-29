@@ -6,6 +6,8 @@
     cursor: pointer;
     font-size: 50px;
     position: fixed;
+    /* bajamos un poco la posicion del boton  */
+    top: calc(100% - 70px);
     bottom: 24px;
     right: 24px;
     font-weight: bold;

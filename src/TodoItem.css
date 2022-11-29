@@ -1,14 +1,22 @@
 .TodoItem {
+    transition: .5s ease;
     background-color: #FAFAFA;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 24px;
-    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.485);
   }
   
+  .TodoItem:hover{
+    transition: .5s ease;
+    background-color: rgb(122, 191, 245);
+    /* border: 1px solid black; */
+  }
+
   .TodoItem__p {
+    padding-left: 40px;
     margin: 24px 0 24px 24px;
     width: calc(100% - 120px);
     font-size: 18px;
@@ -27,7 +35,7 @@
     align-items: center;
     height: 48px;
     width: 48px;
-    font-size: 24px;
+    font-size: 35px;
     font-weight: bold;
     /* background-color: #CCC; */
   }
@@ -41,10 +49,11 @@
   }
   
   .Icon__delete {
-    position: absolute;
-    top: -24px;
+    transition: .5s ease;
     right: 0;
+    color: red;
   }
   .Icon__delete:hover {
-    color: red;
+    transition: .5s ease;
+    color: rgb(137, 0, 0);
   }

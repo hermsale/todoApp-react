@@ -5,6 +5,7 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 
+
 // import './App.css';
 
 // creamos una lista de array con objetos y propiedades - tareas pendientes
@@ -23,6 +24,7 @@ function App() {
       <TodoSearch />
        {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
       <TodoList>
+        
          {todos.map(todo => (
            <TodoItem key={todo.index} number={todo.index} text={todo.text} completed={todo.completed} />
           ))} 
