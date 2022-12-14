@@ -1,20 +1,13 @@
 import React from "react";
 import "./TodoSearch.css";
 
-function TodoSearch() {
-  // react Hooks
-  const [searchValue, setSearchValue] = React.useState('');
-
-  // tomamos por parametro el objeto event de los cambios del input 
-  const onSearchValueChange = (event) => {
-    console.log(event.target.value);
-    setSearchValue(event.target.value);
-  };
 
 function TodoSearch (){
-    // creamos un array que guarde un estado y una funcion, propio del objeto React.useState
+    // react Hooks
+    // creamos un array que guarde un estado y una funcion, esto es propio del objeto React.useState
     const [searchValue, setSearchValue] = React.useState('');
 
+    // tomamos por parametro el objeto event de los cambios del input 
     // cada vez que hagamos un cambio en el input, va a llamar a la funcion setSearchValue para actualizar su estado
     const onSearchValueChange = (event) =>{
        console.log(event.target.value);
