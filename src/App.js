@@ -30,7 +30,7 @@ function App() {
     const completedTodos = todos.filter( todo => !!todo.completed).length;
     const totalTodos = todos.length;
 
-  // creamos un array vacio
+  // creamos un array vacio que almacenara las coincidencias de la busqueda
     let searchedTodos = [];
 
     // si no hay nada escrito en searchValue, mostramos todos los todos
