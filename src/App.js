@@ -6,8 +6,6 @@ import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 
 
-// import './App.css';
-
 // creamos una lista de array con objetos y propiedades - tareas pendientes
 const defaultTodos = [
   {index:1, text:'Cortar Cebolla', completed:true},
@@ -20,8 +18,10 @@ const defaultTodos = [
 function App() {
   // react Hooks //////////////////////////////////////////////////////////////////
 
+  // estado inicial de nuestros Todo's
   // creamos un estado para mostrar los Todo's - le asignamos los Todo's que tenemos en nuestro array por defaultTodos
     const [todos, setTodos] = React.useState(defaultTodos);
+
 
     // se guarda el estado y una funcion para actualizarlo, esto es propio del objeto React.useState
     const [searchValue, setSearchValue] = React.useState('');  
@@ -49,33 +49,62 @@ function App() {
     }
 
 
+    // completetar Todo's 
+
+    // recibimos el index para compararlo y ver cual cumple la condicion, para pasarlo a completo/incompleto
+    const toggleCompleteTodo = (index) => {
+      // guardamos el indice de la coincidencia, entre el index que nos llega y el del array
+      const todoIndex = todos.findIndex(todo => todo.index === index);
+      console.log(todoIndex);
+      // clonamos en un nuevo array los todos
+      const newTodos = [...todos];
+      // le cambiamos la propiedad complete 
+      newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+      // cambiamos el estado de todos 
+      setTodos(newTodos); 
+    }
+
+    
+    // eliminar Todo's
+
+    // recibimos el index para compararlo y ver cual cumple la condicion, para pasarlo a completo/incompleto
+    const deleteTodo = (index) => {
+      // guardamos el indice de la coincidencia, entre el index que nos llega y el del array
+      const todoIndex = todos.findIndex(todo => todo.index === index);
+      console.log(todoIndex);
+      // // clonamos en un nuevo array los todos
+      const newTodos = [...todos];
+      // eliminamos el elemento 
+      newTodos.splice(todoIndex,1);
+      // // cambiamos el estado de todos 
+      setTodos(newTodos); 
+    }
 
 
   return (
     <React.Fragment>
       {/* le pasamos al componente encargado de tomar el control de Todo's los valores */}
-      <TodoCounter 
-      total={totalTodos}
-      completed={completedTodos}
-      />
-    
-    {/* pasamos por props el estado  */}
-      <TodoSearch 
-      searchValue={searchValue}
-      setSearchValue={setSearchValue}
-      />
-       {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
+      <TodoCounter total={totalTodos} completed={completedTodos} />
+
+      {/* pasamos por props el estado  */}
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
       <TodoList>
-        
-         {searchedTodos.map(todo => (
-           <TodoItem key={todo.index} number={todo.index} text={todo.text} completed={todo.completed} />
-          ))} 
+        {searchedTodos.map((todo) => (
+          <TodoItem
+            key={todo.index}
+            number={todo.index}
+            text={todo.text}
+            completed={todo.completed}
+            onDelete = {() => deleteTodo(todo.index)}
+            onComplete = {() => toggleCompleteTodo(todo.index)}
+          />
+        ))}
       </TodoList>
 
       <CreateTodoButton />
-
     </React.Fragment>
-    );
+  );
 }
 
 export default App;
