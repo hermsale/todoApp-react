@@ -1,9 +1,9 @@
 import React from 'react';
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { TodoItem } from './TodoItem';
-import { CreateTodoButton } from './CreateTodoButton';
+import { TodoCounter } from '../TodoCounter';
+import { TodoSearch } from '../TodoSearch';
+import { TodoList } from '../TodoList';
+import { TodoItem } from '../TodoItem';
+import { CreateTodoButton } from '../CreateTodoButton';
 
 
 // creamos una lista de array con objetos y propiedades - tareas pendientes
@@ -96,17 +96,14 @@ function App() {
             number={todo.index}
             text={todo.text}
             completed={todo.completed}
-            onDelete = {() => deleteTodo(todo.index)}
             onComplete = {() => toggleCompleteTodo(todo.index)}
+            onDelete = {() => deleteTodo(todo.index)}
           />
         ))}
       </TodoList>
-
       <CreateTodoButton />
     </React.Fragment>
   );
 }
 
 export default App;
-
-
