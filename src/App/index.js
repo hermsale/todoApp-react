@@ -83,8 +83,11 @@ function App() {
       const newTodos = [...todos];
       // le cambiamos la propiedad complete 
       newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-      // cambiamos el estado de todos 
+
+      // cambiabamos el estado de todos 
       // setTodos(newTodos); 
+
+      // llamamos a la funcion encargada de actualizar el estado de los TODO's y guardarlo en el LocalStorage
       saveTodos(newTodos);
     }
 
@@ -101,8 +104,11 @@ function App() {
       const newTodos = [...todos];
       // eliminamos el elemento 
       newTodos.splice(todoIndex,1);
-      // // cambiamos el estado de todos 
+
+      // cambiabamos el estado de todos 
       // setTodos(newTodos); 
+      
+      // llamamos a la funcion encargada de actualizar el estado de los TODO's y guardarlo en el LocalStorage
       saveTodos(newTodos);
     }
 
