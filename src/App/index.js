@@ -10,32 +10,58 @@ import { AppUI } from './AppUI';
 //   {index:4, text:'a', completed:false}
 // ]
 
-// funcion app - citando las propiedades del Componente App 
-function App() {
+// crearemos nuestros hook's personalizados 
 
-  // creamos la variable que almacenara los TODO's (si es que los hay) guardados en TODOS_V1
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
+// este hook nos devolvera el item que hayamos guardado en LocalStorage. Ese elemento lo guardaremos dentro de un parametro al que llamaremos itemName 
+
+// este hook nos traera el itemName hacia donde nos direccionaremos en el localStorage para guardar items 
+function useLocalStorage(itemName, initialValue) {
+  // creamos la variable que almacenara los TODO's (si es que los hay) guardados en TODOS_V1 (o la version que nos traiga por parametro en itemName)
+  const localStorageItem = localStorage.getItem(itemName);
   // variable que contendra el objeto JavaScript una vez parsiado el archivo JSON
-  let parsedTodos;
+  let parsedItem;
 
-  // si no hay nada en localStorageTodos, que cree un array vacio y listo para rellenar
+  
+  // si no hay nada en localStorageItem, que cree un array vacio y listo para rellenar
   // Esta posibilidad se puede dar si es un usuario que recien inicia la aplicación y no tiene nada cargado
-  if(!localStorageTodos){
+  if(!localStorageItem){
     // esta variable es la que manejara el estado inicial de nuestros Todo's. como no hay nada cargado asignamos un array vacio
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = [];
   }else{
-    // en el caso que si haya objetos en localStorageTodos, se lo pasamos a la variable encargada del manejo de estados de Todo's
-    parsedTodos = JSON.parse(localStorageTodos);
+    // en el caso que si haya objetos en localStorageItem, se lo pasamos a la variable encargada del manejo de estados de Todo's
+    parsedItem = JSON.parse(localStorageItem);
   }
 
-
-  // react Hooks /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // estado inicial de nuestros Todo's
+   // estado inicial de nuestros Todo's
   // creamos un estado para mostrar los Todo's - le asignamos los Todo's que tenemos en nuestro array por defaultTodos
-    const [todos, setTodos] = React.useState(parsedTodos);
+    const [item, setItem] = React.useState(parsedItem);
 
-    console.log(parsedTodos);
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // funcion para guardar cambios de los Todos en el LocalStorage
+    const saveItem = (newItem)=>{
+      const stringifiedItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName,stringifiedItem);
+      
+      setItem(newItem); 
+    }
+
+    // por medio del return le enviamos al App lo necesario, para que funcione la aplicacion 
+    return [
+      item,
+      saveItem
+    ]
+}
+
+
+// funcion app - citando las propiedades del Componente App 
+function App() {
+  // react Hooks personalizado //////////////////////////////////////////////////////////////////////////////
+
+  // traeremos las variables que conectan con el LocalStorage, de nuestro custom hook - le pasamos por parametro la key del LocalStorage
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1',[]);
+
+
     // se guarda el estado y una funcion para actualizarlo, esto es propio del objeto React.useState
     const [searchValue, setSearchValue] = React.useState('');  
 
@@ -62,14 +88,7 @@ function App() {
        })
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // funcion para guardar cambios de los Todos en el LocalStorage
-    const saveTodos = (newTodos)=>{
-      const itemTodo = JSON.stringify(newTodos);
-      localStorage.setItem('TODOS_V1',itemTodo);
-      
-      setTodos(newTodos); 
-    }
+  
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     // completetar Todo's - esta funcion nos permite marcar como completo o sin completar un TODO 
@@ -80,15 +99,15 @@ function App() {
       const todoIndex = todos.findIndex(todo => todo.index === index);
       console.log(todoIndex);
       // clonamos en un nuevo array los todos
-      const newTodos = [...todos];
+      const newItem = [...todos];
       // le cambiamos la propiedad complete 
-      newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+      newItem[todoIndex].completed = !newItem[todoIndex].completed;
 
       // cambiabamos el estado de todos 
-      // setTodos(newTodos); 
+      // setItem(newItem); 
 
       // llamamos a la funcion encargada de actualizar el estado de los TODO's y guardarlo en el LocalStorage
-      saveTodos(newTodos);
+      saveTodos(newItem);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,15 +120,15 @@ function App() {
       const todoIndex = todos.findIndex(todo => todo.index === index);
       console.log(todoIndex);
       // // clonamos en un nuevo array los todos
-      const newTodos = [...todos];
+      const newItem = [...todos];
       // eliminamos el elemento 
-      newTodos.splice(todoIndex,1);
+      newItem.splice(todoIndex,1);
 
       // cambiabamos el estado de todos 
-      // setTodos(newTodos); 
+      // setItem(newItem); 
       
       // llamamos a la funcion encargada de actualizar el estado de los TODO's y guardarlo en el LocalStorage
-      saveTodos(newTodos);
+      saveTodos(newItem);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
