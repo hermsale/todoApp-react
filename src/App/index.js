@@ -27,7 +27,7 @@ function useLocalStorage(itemName, initialValue) {
   if(!localStorageItem){
     // esta variable es la que manejara el estado inicial de nuestros Todo's. como no hay nada cargado asignamos un array vacio
     localStorage.setItem(itemName, JSON.stringify(initialValue));
-    parsedItem = [];
+    parsedItem = initialValue;
   }else{
     // en el caso que si haya objetos en localStorageItem, se lo pasamos a la variable encargada del manejo de estados de Todo's
     parsedItem = JSON.parse(localStorageItem);
@@ -61,7 +61,7 @@ function App() {
   // traeremos las variables que conectan con el LocalStorage, de nuestro custom hook - le pasamos por parametro la key del LocalStorage
   const [todos, saveTodos] = useLocalStorage('TODOS_V1',[]);
 
-
+  console.log(todos.length);
     // se guarda el estado y una funcion para actualizarlo, esto es propio del objeto React.useState
     const [searchValue, setSearchValue] = React.useState('');  
 
@@ -70,6 +70,7 @@ function App() {
     const completedTodos = todos.filter( todo => !!todo.completed).length;
     const totalTodos = todos.length;
 
+    console.log(completedTodos);
   // creamos un array vacio que almacenara las coincidencias de la busqueda
     let searchedTodos = [];
 
@@ -133,10 +134,19 @@ function App() {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    console.log('Render antes del use effect');
+
+    React.useEffect(() => {
+      console.log('use effect');
+    },[completedTodos]);
+
+    
+    console.log('Render despues del use effect');
+
   return (
     <AppUI 
-        total={totalTodos} 
-        completed={completedTodos} 
+        totalTodos={totalTodos} 
+        completedTodos={completedTodos} 
         searchValue={searchValue} 
         setSearchValue={setSearchValue} 
         searchedTodos={searchedTodos}
