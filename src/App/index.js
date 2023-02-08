@@ -136,6 +136,8 @@ function App() {
 
     console.log('Render antes del use effect');
 
+    
+    
     React.useEffect(() => {
       console.log('use effect');
     },[completedTodos]);
