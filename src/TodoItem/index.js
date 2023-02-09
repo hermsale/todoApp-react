@@ -29,10 +29,10 @@ function TodoItem(props) {
       </p>
       {/* si la tarea esta completa,  habilitamos el boton para eliminar */}
       {
-        props.completed &&
+        props.completed ?
       <span className="Icon Icon__delete" onClick={props.onDelete}>
         <FaHotjar />
-      </span>
+      </span>:<span className="Icon__delete-inactive"/>
       }
     </li>
   );
