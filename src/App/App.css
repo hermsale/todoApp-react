@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.TodoCompleted{
+  font-size: 24px;
+  text-align: center;
+  margin: 0;
+  padding: 48px;
+}
+
+.TodoLoading{
+  font-size: 24px;
+  text-align: center;
+  margin: 0;
+  padding: 48px;
+}

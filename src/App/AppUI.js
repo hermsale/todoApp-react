@@ -5,8 +5,9 @@ import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton';
+import "./App.css";
 
-function AppUI({ totalTodos, completedTodos, searchValue, setSearchValue, searchedTodos, toggleCompleteTodo, deleteTodo }) {
+function AppUI({ totalTodos, completedTodos, searchValue, setSearchValue, searchedTodos, toggleCompleteTodo, deleteTodo, loading }) {
 
     return (
         <React.Fragment>
@@ -25,9 +26,9 @@ function AppUI({ totalTodos, completedTodos, searchValue, setSearchValue, search
 
             {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
             <TodoList>
-{/* 
-            {loading && <p> estamos cargando la pagina </p> }
-            { (!loading && !searchedTodos.lenght) && <p>crea tu primer Todo </p>} */}
+
+            {loading && <p className="TodoLoading"> Estamos cargando los Todo's </p> }
+           
 
                 {searchedTodos.map((todo) => (
                     <TodoItem
@@ -40,6 +41,7 @@ function AppUI({ totalTodos, completedTodos, searchValue, setSearchValue, search
                     />
                 ))}
             </TodoList>
+            { (!loading && completedTodos) ? <p className="TodoCompleted">Tienes Todo's para eliminar</p> : <p></p>}
             <CreateTodoButton />
         </React.Fragment>
     );
