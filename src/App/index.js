@@ -79,7 +79,8 @@ function useLocalStorage(itemName, initialValue) {
       item,
       saveItem,
       loading, // estado de carga
-      error
+      error // estado de error
+
     }
     
 }
