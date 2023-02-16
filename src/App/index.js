@@ -14,12 +14,12 @@ import { AppUI } from './AppUI';
 
 // este hook nos devolvera el item que hayamos guardado en LocalStorage. Ese elemento lo guardaremos dentro de un parametro al que llamaremos itemName 
 
-// este hook nos traera el itemName hacia donde nos direccionaremos en el localStorage para guardar items 
+// este hook nos traera el itemName hacia donde nos direccionaremos en el localStorage ('TODOS_V1') para guardar items Y el valor inicial ("[]")
 function useLocalStorage(itemName, initialValue) {
   // creamos la variable que almacenara los TODO's (si es que los hay) guardados en TODOS_V1 (o la version que nos traiga por parametro en itemName)
   const localStorageItem = localStorage.getItem(itemName);
   // variable que contendra el objeto JavaScript una vez parsiado el archivo JSON
-  let parsedItem;
+  let parsedItem; 
 
   
   // si no hay nada en localStorageItem, que cree un array vacio y listo para rellenar
