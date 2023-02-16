@@ -17,7 +17,7 @@ function TodoSearch ({searchValue, setSearchValue}){
     return (
         <input 
             className="TodoSearch"
-            placeholder='Cebolla'
+            placeholder='Escribe aquí una tarea'
             // indicamos que el valor sera igual al del estado - por convención de React hay que realizar este paso
             value={searchValue}
             // cada cambio que haya en el input, se transladará a la funcion
