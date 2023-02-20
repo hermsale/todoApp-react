@@ -2,15 +2,9 @@ import React from "react";
 import "./TodoItem.css";
 import { FaCheck, FaHotjar } from "react-icons/fa";
 
-function TodoItem(props) {
-  // const onComplete = () =>{
-  //     alert ('Completaste el TODO '+props.text);
-  //     // props.text;
-  // }
+// import { TodoContext } from "../TodoContext";
 
-  //   const onDelete = () => {
-  //     alert("Borraste el TODO " + props.text);
-  //   };
+function TodoItem(props) {
 
   return (
     <li className="TodoItem">

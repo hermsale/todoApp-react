@@ -1,9 +1,12 @@
 import React from "react";
+import { TodoContext } from "../TodoContext";
 import "./TodoSearch.css";
 
 
 // le indicamos que va a recibir los argumentos por params - desestructuracion del props
-function TodoSearch ({searchValue, setSearchValue}){
+function TodoSearch (){
+
+    const {searchValue, setSearchValue} = React.useContext(TodoContext)
 
 
     // tomamos por parametro el objeto event de los cambios del input 
