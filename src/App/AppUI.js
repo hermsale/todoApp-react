@@ -35,8 +35,7 @@ function AppUI() {
                             {loading && <p className="TodoLoading"> Estamos cargando los Todo's </p> }
                                 {searchedTodos.map((todo) => (
                                     <TodoItem
-                                        key={todo.index}
-                                        // number={todo.index}
+                                        key={todo.index}                                       
                                         text={todo.text}
                                         completed={todo.completed}
                                         onComplete={() => toggleCompleteTodo(todo.index)}

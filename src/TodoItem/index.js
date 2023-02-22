@@ -1,12 +1,12 @@
 import React from "react";
 import "./TodoItem.css";
+
 import { FaCheck, FaHotjar } from "react-icons/fa";
 
-// import { TodoContext } from "../TodoContext";
 
 function TodoItem(props) {
-
   return (
+    
     <li className="TodoItem">
       <span
         className={`Icon Icon__check ${
