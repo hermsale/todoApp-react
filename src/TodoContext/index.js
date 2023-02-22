@@ -27,7 +27,7 @@ function TodoProvider(props){
    const completedTodos = todos.filter( todo => !!todo.completed).length;
    const totalTodos = todos.length;
 
-   console.log(completedTodos);
+  //  console.log(completedTodos);
  // creamos un array vacio que almacenara las coincidencias de la busqueda
    let searchedTodos = [];
 
