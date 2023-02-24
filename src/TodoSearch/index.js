@@ -8,7 +8,6 @@ function TodoSearch (){
 
     const {searchValue, setSearchValue} = React.useContext(TodoContext)
 
-
     // tomamos por parametro el objeto event de los cambios del input 
     // cada vez que hagamos un cambio en el input, va a llamar a la funcion setSearchValue para actualizar su estado
     const onSearchValueChange = (event) =>{

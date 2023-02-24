@@ -5,9 +5,11 @@ import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton';
+import { Modal } from '../Modal';
 
 // importamos el TodoContext para usar el Consumer
 import { TodoContext } from "../TodoContext";
+
 import "./App.css";
 
 function AppUI() {
@@ -44,6 +46,10 @@ function AppUI() {
                                 ))}
                             { (!loading && completedTodos) ? <p className="TodoCompleted">Tienes Todos para eliminar</p> : <p></p>}  
                       </TodoList>
+                    
+                <Modal>
+                    <p>{searchedTodos[0]?.text}</p>
+                </Modal>
             <CreateTodoButton />
         </React.Fragment>
     );
