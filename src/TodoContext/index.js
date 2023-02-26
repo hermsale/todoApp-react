@@ -18,9 +18,14 @@ function TodoProvider(props){
    ,error
  } = useLocalStorage('TODOS_V1',[]);
 
- console.log(todos.length);
+
+
+//  console.log(todos.length);
    // se guarda el estado y una funcion para actualizarlo, esto es propio del objeto React.useState
    const [searchValue, setSearchValue] = React.useState('');  
+
+// este useState nos permitira abrir o cerrar el modal de ingreso de Todo's
+   const [openModal, setOpenModal] = React.useState(false);
 
    //////////////////////////////////////////////////////////////////////////////////
    // guardara la cantidad de todo's completos - si todo.completed es true
@@ -49,13 +54,28 @@ function TodoProvider(props){
  
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // Agregar Todo's 
+
+  const addTodo = (text) => {
+    const newItem = [...todos];
+    
+    // tenemos que enviarle el objeto con las propiedades de un Todo
+    newItem.push({
+      text:text,
+      completed:false,
+    });
+    saveTodos(newItem);
+  }
+
+
    // completetar Todo's - esta funcion nos permite marcar como completo o sin completar un TODO 
 
    // recibimos el index para compararlo y ver cual cumple la condicion, para pasarlo a completo/incompleto
-   const toggleCompleteTodo = (index) => {
+   const toggleCompleteTodo = (text) => {
      // guardamos el indice de la coincidencia, entre el index que nos llega y el del array
-     const todoIndex = todos.findIndex(todo => todo.index === index);
-     console.log(todoIndex);
+     const todoIndex = todos.findIndex(todo => todo.text === text);
+    //  console.log(todoIndex);
      // clonamos en un nuevo array los todos
      const newItem = [...todos];
      // le cambiamos la propiedad complete 
@@ -73,9 +93,9 @@ function TodoProvider(props){
    // eliminar Todo's - esta función elimina de manera permanente un TODO, ya sea tildado como completo o no
 
    // recibimos el index para compararlo y ver cual cumple la condicion, para pasarlo a completo/incompleto
-   const deleteTodo = (index) => {
+   const deleteTodo = (text) => {
      // guardamos el indice de la coincidencia, entre el index que nos llega y el del array
-     const todoIndex = todos.findIndex(todo => todo.index === index);
+     const todoIndex = todos.findIndex(todo => todo.text === text);
      console.log(todoIndex);
      // // clonamos en un nuevo array los todos
      const newItem = [...todos];
@@ -91,23 +111,6 @@ function TodoProvider(props){
 
    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-   // pruebas de render useEffect 
-   // console.log('Render antes del use effect');
-
-   
-   // React.useEffect(() => {
-   //   console.log('use effect sin condicional');
-   // });
-   
-   
-   // React.useEffect(() => {
-   //   console.log('use effect doble condicion');
-   // },[totalTodos,completedTodos]);
-
-   // console.log('Render despues del use effect');
-
     return(
         // Este lo vamos a utilizar para envolver toda nuestra aplicación en nuestra aplicación App.js
         <TodoContext.Provider value={{
@@ -119,7 +122,10 @@ function TodoProvider(props){
             setSearchValue,
             searchedTodos,
             toggleCompleteTodo,
-            deleteTodo
+            deleteTodo,
+            openModal, 
+            addTodo,
+            setOpenModal,         
         }}>
           {/* envolvemos en nuestro proveedor todos los elementos de la App */}
             {props.children}
