@@ -14,8 +14,7 @@ function TodoForm(){
     const [newTodoValue, setNewTodoValue] = React.useState('');
 
     const onChange = (event) => {
-        // console.log(event.target.value);
-        setNewTodoValue(event.target.value);
+        setNewTodoValue(event.target.value);        
     }
 
     const onCancel = () => {
@@ -24,8 +23,11 @@ function TodoForm(){
 
     const onSubmit = (event) => {
         event.preventDefault();
+        // evitamos que se agreguen textos vacios a la lista
+        if(newTodoValue.length > 0) {
         addTodo(newTodoValue);
         setOpenModal(false);
+        }
     }
 
     return (
@@ -47,7 +49,8 @@ function TodoForm(){
                 <button
                     onClick={onSubmit}
                     type="submit"
-                    className='TodoForm-button TodoForm-button--add'
+                    // si no hay nada escrito, que ,muestre el add_error
+                    className={`TodoForm-button TodoForm-button--add ${(!newTodoValue.length > 0) && "TodoForm-button--add__error"} `}
                 >
                     Añadir
                 </button>

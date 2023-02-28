@@ -65,7 +65,22 @@ form {
     background: #61DAFA;
     box-shadow: 0px 5px 25px rgba(97, 218, 250, 0.5);
   }
+
+  .TodoForm-button--add:hover {
+    background: rgb(50, 255, 50);;
+    box-shadow: 0px 5px 25px rgba(97, 218, 250, 0.5);
+  }
   
   .TodoForm-button--cancel {
     background: transparent;
+  }
+
+  .TodoForm-button--cancel:hover {
+    background: transparent;
+    border: 2px solid #202329;
+  }
+
+  .TodoForm-button--add__error:hover {
+    background: #ec0d0d;
+    box-shadow: 0px 5px 25px rgba(97, 218, 250, 0.5);
   }
