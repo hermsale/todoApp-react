@@ -19,9 +19,10 @@ function TodoProvider(props){
  } = useLocalStorage('TODOS_V1',[]);
 
 
+//  Se encarga de guardar los estados de los nuevos Todo's utilizado en el TodoForm 
+  const [newTodoValue, setNewTodoValue] = React.useState('');
 
-//  console.log(todos.length);
-   // se guarda el estado y una funcion para actualizarlo, esto es propio del objeto React.useState
+// se guarda el estado y una funcion para actualizarlo, esto es propio del objeto React.useState
    const [searchValue, setSearchValue] = React.useState('');  
 
 // este useState nos permitira abrir o cerrar el modal de ingreso de Todo's
@@ -125,7 +126,9 @@ function TodoProvider(props){
             deleteTodo,
             openModal, 
             addTodo,
-            setOpenModal,         
+            setOpenModal,
+            newTodoValue, 
+            setNewTodoValue         
         }}>
           {/* envolvemos en nuestro proveedor todos los elementos de la App */}
             {props.children}
