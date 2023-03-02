@@ -53,7 +53,7 @@ function useLocalStorage(itemName, initialValue) {
           setError(error);
           setLoading(false);
         }
-      },5000);
+      },3000);
     });
    
   
