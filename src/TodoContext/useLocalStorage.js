@@ -5,6 +5,7 @@ import React from "react";
 // este hook nos traera el itemName hacia donde nos direccionaremos en el localStorage ('TODOS_V1') para guardar items Y el valor inicial ("[]")
 function useLocalStorage(itemName, initialValue) {
 
+  
     // hook para controlar si hay un error en la carga
     const [error, setError] = React.useState(false);
     // hook para controlar el estado de carga de la aplicación. 
@@ -15,9 +16,14 @@ function useLocalStorage(itemName, initialValue) {
   
     React.useEffect(() => {
       
-  
+      
       setTimeout(() => {
+        
         try{
+
+          if(itemName){
+            throw new Error("Debes iniciar sesión para acceder a esta página");
+          }
             // creamos la variable que almacenara los TODO's (si es que los hay) guardados en TODOS_V1 (o la version que nos traiga por parametro en itemName)
               const localStorageItem = localStorage.getItem(itemName);
             // variable que contendra el objeto JavaScript una vez parsiado el archivo JSON
@@ -39,8 +45,9 @@ function useLocalStorage(itemName, initialValue) {
             // ya termino de cargar y pasamos el estado a false
             setLoading(false);
             // setError(false);
-          
+            
           }catch(error){
+          console.log('el error fue',error);
           setError(error);
         }
       },5000);

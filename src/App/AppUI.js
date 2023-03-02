@@ -8,6 +8,7 @@ import { CreateTodoButton } from '../CreateTodoButton';
 import { TodoForm } from "../TodoForm";
 import { Modal } from '../Modal';
 import { TodoLoading } from "../TodoLoading";
+import { TodoError } from "../TodoError";
 
 // importamos el TodoContext para usar el Consumer
 import { TodoContext } from "../TodoContext";
@@ -18,6 +19,7 @@ function AppUI() {
 
     const {
         loading,
+        error,
         searchedTodos,
         toggleCompleteTodo,
         deleteTodo,
@@ -38,8 +40,11 @@ function AppUI() {
             />
             {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
                       <TodoList>
+                            
                             {loading && <TodoLoading/>}
-                                {searchedTodos.map((todo) => (
+                            {(error && <TodoError/>) && !<TodoLoading/>}
+                            {(loading && !error) &&
+                                searchedTodos.map((todo) => (
                                     <TodoItem
                                         key={todo.text}                                       
                                         text={todo.text}
@@ -47,7 +52,8 @@ function AppUI() {
                                         onComplete={() => toggleCompleteTodo(todo.text)}
                                         onDelete={() => deleteTodo(todo.text)}
                                     />
-                                ))}
+                                ))
+                            }
                             { (!loading && completedTodos) ? <p className="TodoCompleted">Tienes Todos para eliminar</p> : <p></p>}  
                       </TodoList>
                 
