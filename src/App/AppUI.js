@@ -7,6 +7,7 @@ import { TodoItem } from '../TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { TodoForm } from "../TodoForm";
 import { Modal } from '../Modal';
+import { TodoLoading } from "../TodoLoading";
 
 // importamos el TodoContext para usar el Consumer
 import { TodoContext } from "../TodoContext";
@@ -37,7 +38,7 @@ function AppUI() {
             />
             {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
                       <TodoList>
-                            {loading && <p className="TodoLoading"> Estamos cargando los Todo's </p> }
+                            {loading && <TodoLoading/>}
                                 {searchedTodos.map((todo) => (
                                     <TodoItem
                                         key={todo.text}                                       
