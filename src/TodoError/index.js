@@ -1,9 +1,11 @@
 import React from "react";
+import "./TodoError.css";
 
 function TodoError(){
     return(
-        <div>
-            <p>Hubo un error...</p>
+        <div className="TodoError_container">
+            <p className="TodoError_text">Hubo un error...</p>
+            <p className="TodoError_text">Estamos trabajando para solucionarlo.</p>
         </div>
         
     )

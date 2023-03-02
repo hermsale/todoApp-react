@@ -42,9 +42,9 @@ function AppUI() {
                       <TodoList>
                             
                             {loading && <TodoLoading/>}
-                            {(error && <TodoError/>) && !<TodoLoading/>}
-                            {(loading && !error) &&
-                                searchedTodos.map((todo) => (
+                            {error && <TodoError/>}
+                            
+                                {searchedTodos.map((todo) => (
                                     <TodoItem
                                         key={todo.text}                                       
                                         text={todo.text}
@@ -57,6 +57,7 @@ function AppUI() {
                             { (!loading && completedTodos) ? <p className="TodoCompleted">Tienes Todos para eliminar</p> : <p></p>}  
                       </TodoList>
                 
+                {/* solo si se hace click en el boton, aparecera el TodoForm */}
                 {
                     !!openModal && (
                         <Modal>
@@ -64,9 +65,15 @@ function AppUI() {
                         </Modal>
                     )
                 }
-            <CreateTodoButton 
-                setOpenModal={setOpenModal}
-            />
+
+                {/* verificamos que haya finalizado el loading y que no haya errores para que aparezca el boton */}
+                {
+                    (!error && !loading) && 
+                    
+                    <CreateTodoButton 
+                    setOpenModal={setOpenModal}
+                    />
+                }
         </React.Fragment>
     );
 }

@@ -21,9 +21,11 @@ function useLocalStorage(itemName, initialValue) {
         
         try{
 
-          if(itemName){
-            throw new Error("Debes iniciar sesión para acceder a esta página");
-          }
+          // la siguiente linea de comando esta hecha adrede para probar las posibles pantallas de error en la aplicación.
+          // if(itemName){
+          //   throw new Error("Debes iniciar sesión para acceder a esta página");
+          // }
+
             // creamos la variable que almacenara los TODO's (si es que los hay) guardados en TODOS_V1 (o la version que nos traiga por parametro en itemName)
               const localStorageItem = localStorage.getItem(itemName);
             // variable que contendra el objeto JavaScript una vez parsiado el archivo JSON
@@ -49,6 +51,7 @@ function useLocalStorage(itemName, initialValue) {
           }catch(error){
           console.log('el error fue',error);
           setError(error);
+          setLoading(false);
         }
       },5000);
     });
