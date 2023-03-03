@@ -87,6 +87,7 @@ function TodoProvider(props){
 
      // llamamos a la funcion encargada de actualizar el estado de los TODO's y guardarlo en el LocalStorage
      saveTodos(newItem);
+     
    }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,6 +109,7 @@ function TodoProvider(props){
      
      // llamamos a la funcion encargada de actualizar el estado de los TODO's y guardarlo en el LocalStorage
      saveTodos(newItem);
+     
    }
 
    ////////////////////////////////////////////////////////////////////////////////////////////////////////////

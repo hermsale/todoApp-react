@@ -21,6 +21,8 @@ function TodoForm(){
 
     const onCancel = () => {
         setOpenModal(false);
+        // volvemos a poner el placeholder del formulario
+        setNewTodoValue('');
     }
 
     const onSubmit = (event) => {
@@ -29,6 +31,8 @@ function TodoForm(){
         if(newTodoValue.length > 0) {
         addTodo(newTodoValue);
         setOpenModal(false);
+        // volvemos a poner el placeholder del formulario
+        setNewTodoValue('');
         }
     }
 
