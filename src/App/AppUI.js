@@ -30,15 +30,13 @@ function AppUI() {
 
     return (
         <React.Fragment>
-            {/* le pasamos al componente encargado de tomar el control de Todo's los valores */}
-
+          
             <TodoCounter
             />
 
-            {/* pasamos por props el estado  */}
             <TodoSearch            
             />
-            {/* podemos hacer uso en TodoList de la propiedad children, ya que  hicimos apertura y cierre del componente */}
+            
                       <TodoList>
                             
                             {loading && <TodoLoading/>}
