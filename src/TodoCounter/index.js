@@ -15,7 +15,7 @@ function TodoCounter () {
         // Opcion de uso de la etiqueta Consumer
         <TodoContext.Consumer>
             {value =>(
-                <h2 className='TodoCounter'> Has completado {value.completedTodos} de {value.totalTodos} TODO's</h2>
+                <h2 className='TodoCounter'> Haz completado {value.completedTodos} de {value.totalTodos} TODO's</h2>
             )
             }
         </TodoContext.Consumer>
