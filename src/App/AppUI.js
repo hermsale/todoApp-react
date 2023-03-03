@@ -41,7 +41,8 @@ function AppUI() {
                             
                             {loading && <TodoLoading/>}
                             {error && <TodoError/>}
-                            
+                            {(!loading && searchedTodos.length === 0) && <p className="TodoCompleted">¡Crea tu primer Todo!</p>}
+
                                 {searchedTodos.map((todo) => (
                                     <TodoItem
                                         key={todo.text}                                       
